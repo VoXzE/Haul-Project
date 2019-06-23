@@ -1,0 +1,53 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+body {
+  background: #F4F4F4;
+}
+
+.navbar-avatar img {
+  width: 45px;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-avatar {
+   background: #ffffff;
+   box-shadow: 0 0 5px #3a3f464d;
+   border-radius: 50%;
+   padding: 3px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.bg-light {
+  background: #ffffff!important;
+}
+
+.btn-blue i {
+  margin-right: 10px;
+}
+
+.btn-blue {
+  background: #8AC4FF;
+  box-shadow: 0 0 10px #8ac4ff59;
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 7px 15px;
+  margin-right: 20px;
+}
+
+
+.btn-blue:hover {
+  color: #fff;
+  box-shadow: 0 0 12px #8ac4ffa8;
+}
