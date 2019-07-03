@@ -19,7 +19,7 @@ export default class CreateHaulModal extends Component {
           <div id="todo-add-form" className="col s10 offset-s1">
           <form>
             <div className="input-field">
-              <i className="material-icons prefix">note_add</i>
+              <i className="material-icons prefix">add</i>
               <input
                 value={this.props.addFormValue}
                 onChange={this.props.handleInputChange}

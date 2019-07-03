@@ -39,7 +39,7 @@ class index extends Component {
             id="sign-out-button"
             className="btn-floating btn-large teal darken-4"
           >
-            <i className="large material-icons">exit_to_app</i>
+            <i className="large material-icons">exit</i>
           </button>
           <button onClick={() => console.log(_.toArray(this.props.data))}>sssss</button>
         </div>
