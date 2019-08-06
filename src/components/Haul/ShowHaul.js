@@ -41,14 +41,12 @@ class ShowHaul extends Component {
     }
 
     return (
-      <div>
-        <h1>My Awesome haul!</h1>
-        <div className="row">
-
+      <div className="haul">
+        <h1 className="haul-title">My Awesome Haul!</h1>
+        <div className="row haul">
           {items && items.map((item) => (
-            <HaulItem item={item} data={data} haulID={this.props.haulID} key={item.id}/>
+            <HaulItem item={item} data={data} haulid={this.props.haulid} key={item.id}/>
           ))}
-
         </div>
           {auth && auth.uid === data.uid &&
             <React.Fragment>
@@ -56,12 +54,11 @@ class ShowHaul extends Component {
               <a className="btn btn-danger" onClick={this.deleteHaul}>Delete haul</a>
             </React.Fragment>
           }
-        
-        <AddItemModal
-          show={this.state.modalShow}
-          onHide={this.modalClose}
-          haulID={this.props.haulID}
-        />
+          <AddItemModal
+            show={this.state.modalShow}
+            onHide={this.modalClose}
+            haulid={this.props.haulid}
+          />
       </div>
     )
   }

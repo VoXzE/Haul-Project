@@ -30,7 +30,7 @@ class HaulEmpty extends Component {
         <AddItemModal
           show={this.state.modalShow}
           onHide={this.modalClose}
-          haulID={this.props.haulID}
+          haulid={this.props.haulid}
         />
       </div>
     )

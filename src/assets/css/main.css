@@ -1,10 +1,10 @@
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 
 body {
-  background: #F4F4F4;
+  background: #ffffff;
 }
 
 .navbar-avatar img {
@@ -26,6 +26,7 @@ body {
 
 .bg-light {
   background: #ffffff!important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.144);
 }
 
 .btn-blue i {
@@ -36,13 +37,13 @@ body {
   background: #8AC4FF;
   box-shadow: 0 0 10px #8ac4ff59;
   color: #fff;
-  border-radius: 12px;
+  border-radius: 50px;
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 7px 15px;
+  font-size: 15px;
+  padding: 10px 25px;
   margin-right: 20px;
 }
 
@@ -50,4 +51,19 @@ body {
 .btn-blue:hover {
   color: #fff;
   box-shadow: 0 0 12px #8ac4ffa8;
+}
+
+.haul .card {
+  border: none;
+  box-shadow: 0 0 5px #3a3f464d;
+}
+
+.haul-title {
+  color: #2E3346;
+  text-align: center;
+}
+
+.haul {
+  top: 5rem;
+  position: relative;
 }

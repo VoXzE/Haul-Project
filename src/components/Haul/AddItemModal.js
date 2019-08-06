@@ -14,6 +14,7 @@ class AddItemModal extends Component {
       itemSize: "",
       itemLink: "",
       images: null,
+      imageUploading: false,
     }
   }
 
@@ -30,7 +31,11 @@ class AddItemModal extends Component {
       weight: `${itemWeight}`,
       link: `${itemLink}`,
     }
-    this.props.addHaulItem(this.props.haulID, data)
+    this.props.addHaulItem(this.props.haulid, data, images)
+  }
+
+  uploadImage = (event) => {
+    this.setState({ images: event.target.files })
   }
 
 
@@ -49,6 +54,7 @@ class AddItemModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <form>
+            <input type="file" onChange={this.uploadImage}/>
             <label>
               Name:
               <input type="text" placeholder="Enter product name.." name="itemName" onChange={this.onChangeText} />

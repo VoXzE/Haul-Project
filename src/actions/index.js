@@ -1,5 +1,42 @@
-import { haulsRef, authRef, provider } from "../config/firebase";
+import { haulsRef, authRef, provider, storageRef } from "../config/firebase";
 import { FETCH_HAULS, FETCH_USER, FETCH_HAUL } from "./types";
+import * as firebase from "firebase";
+
+const addHaulItemImage = (images, itemid) => {
+
+  return new Promise((resolve, reject) => {
+    let uploadTask = storageRef.child(`images/${itemid}`).put(images[0], { contentType: images[0].type });
+  
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
+      let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log(`File Upload is: ${progress}% done`);
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+          console.log('Upload is running');
+          break;
+      }
+    }, (error) => {
+      switch (error.code) {
+        case 'storage/unauthorized':
+          console.log('storage/unauthorized');
+          break;
+        case 'storage/canceled':
+          console.log('storage/canceled');
+          break;
+        case 'storage/unknown':
+          console.log('storage/unknown');
+          break;
+      }
+    }, () => {
+      uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+        resolve(url)
+      });
+    })
+  })
+};
 
 export const createHaul = (title, uid, isPrivate) => async dispatch => {
   let createHaul = haulsRef.push({title, uid, isPrivate});
@@ -10,20 +47,25 @@ export const createHaul = (title, uid, isPrivate) => async dispatch => {
 };
 
 
-export const addHaulItem = (id, item) => async dispatch => {
+export const addHaulItem = (id, item, images) => async dispatch => {
   let addItemRef = haulsRef.child(id).child("items").push(item);
   let addItemID = addItemRef.key;
   let updateID = haulsRef.child(id).child("items").child(addItemID).update({id: `${addItemID}`})
   updateID;
+  await addHaulItemImage(images, addItemID).then(url => {
+    haulsRef.child(id).child("items").child(addItemID).update({image: `${url}`})
+  });
+
 };
+
 
 export const removeHaulItem = (id, item) => async dispatch => {
   haulsRef.child(id).child("items").child(item).remove();
-}
+};
 
 export const deleteHaul = (id) => async dispatch => {
   haulsRef.child(id).remove();
-}
+};
 
 export const fetchHauls = uid => async dispatch => {
   haulsRef.orderByChild("uid").equalTo(uid).once("value", snapshot => {
@@ -31,6 +73,7 @@ export const fetchHauls = uid => async dispatch => {
       type: FETCH_HAULS,
       payload: snapshot.val()
     });
+    console.log(snapshot.val())
   });
 };
 

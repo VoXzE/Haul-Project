@@ -49,7 +49,6 @@ class index extends Component {
   }
   
   render() {
-    const { addFormVisible, modalShow } = this.state;
     const { auth } = this.props;
     if (this.props.data === "loading") {
       return (
@@ -79,7 +78,7 @@ class index extends Component {
           {auth && 
           <React.Fragment>
             <button className="btn btn-blue my-2 my-sm-0" onClick={this.handleCreateHaul}>
-              <i className="fas fa-plus"></i>
+              {/* <i className="fas fa-plus"></i> */}
               Create Haul
             </button>
             <div className="navbar-avatar">

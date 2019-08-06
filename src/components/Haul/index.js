@@ -32,16 +32,16 @@ class index extends Component {
       )
     }
 
-    if (data.isPrivate && (auth) && (auth.uid !== data.uid) || (data.isPrivate && !auth)) {
+    if ((data.isPrivate && (auth) && (auth.uid !== data.uid)) || (data.isPrivate && !auth)) {
       return (
         <h1>This haul is private :(</h1>
       )
     }
 
     if (data && _.isEmpty(data.items)) {
-      return <HaulEmpty haulID={this.props.match.params.id}/>
+      return <HaulEmpty haulid={this.props.match.params.id}/>
     } else {
-      return <ShowHaul haulID={this.props.match.params.id} data={data}/>
+      return <ShowHaul haulid={this.props.match.params.id} data={data}/>
     }
 
   }
